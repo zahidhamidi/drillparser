@@ -1,7 +1,7 @@
 import os
 from openpyxl import load_workbook
 from PyPDF2 import PdfReader
-from xls2xlsx import XLS2XLSX
+# from xls2xlsx import XLS2XLSX
 
 import xlrd
 import pandas as pd

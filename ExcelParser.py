@@ -58,7 +58,8 @@ def main():
 
 
             if uploaded_files:
-                # Create a temporary directory to store the uploaded files
+
+                # Create a temporary directory to" store the uploaded files
                 temp_directory = "temp_files"
                 os.makedirs(temp_directory, exist_ok=True)
 
@@ -71,9 +72,9 @@ def main():
                     
                 # Run file audit workflow
                 file_types, file_sizes, file_info = count_files_and_sizes(temp_directory)
-                convert_xls_to_xlsx(temp_directory)
+                # convert_xls_to_xlsx(temp_directory)
 
-                                # Check for duplicated files
+                # Check for duplicated files
                 duplicated_files = find_duplicate_files(temp_directory)
 
                 # Display audit statistics
@@ -122,22 +123,6 @@ def main():
                             time.sleep(10)
 
                             
-                            """
-                            # Remove temporary directory and files
-                            for file_name in os.listdir(temp_directory):
-                                file_path = os.path.join(temp_directory, file_name)
-                                
-                                try:
-                                    os.remove(file_path)
-                                except PermissionError:
-                                    print(f"PermissionError: Could not remove {file_path}. It might be in use by another process.")
-
-                            # Now, remove the empty directory
-                            try:
-                                os.rmdir(temp_directory)
-                            except OSError:
-                                print(f"OSError: Could not remove {temp_directory}. It might not be empty.")
-                            """
 
                             
 
@@ -273,10 +258,17 @@ def main():
                 return ''
         
         with col2:
-            wellname_marker = st.text_input("WellName Marker")
+
+            if 'store' not in st.session_state:
+                st.session_state.store = False
+
+            def write_in():
+                st.session_state.store = True
+
+            wellname_marker = st.text_input("WellName Marker",on_change=write_in)
             time_start_marker = st.text_input("TimeStart Marker")
 
-            time_start_index = st.text_input("TimeStart Index",value='')
+            time_start_index = st.text_input("TimeStart Index",value='',on_change=write_in)
             time_start_index = alphabet_to_index(time_start_index)
 
             time_end_marker = st.text_input("TimeEnd Marker")
@@ -286,6 +278,8 @@ def main():
 
             NPT_code_marker = st.text_input("NPT Code Marker")
             NPT_code_index = st.text_input("NPT Code Index")
+        
+
 
 
         # Second Column

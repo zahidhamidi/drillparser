@@ -6,7 +6,7 @@ import pandas as pd
 import subprocess
 import time
 import seaborn as sns
-import pyautogui
+# import pyautogui
 import folium
 from streamlit_folium import st_folium
 import re
@@ -40,8 +40,8 @@ def main():
     # Upload files
     uploaded_files = st.file_uploader("Upload xlsx files", accept_multiple_files=True)
 
-    if st.button("Reset Process"):
-                pyautogui.hotkey("ctrl","F5")
+    # if st.button("Reset Process"):
+                # pyautogui.hotkey("ctrl","F5")
 
     
 
